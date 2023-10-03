@@ -1,4 +1,5 @@
 import React from 'react';
+import ItemCount from './ItemCount'; // Certifique-se de importar o componente ItemCount
 
 function ItemListContainer({ greeting }) {
   const catalogItems = [
@@ -7,9 +8,13 @@ function ItemListContainer({ greeting }) {
     { id: 3, name: 'Higiene', price: 29.99, image: '/imagens/higiene.png' },
   ];
 
+  const handleAddToCart = (quantity) => {
+    console.log(`Adicionado ${quantity} itens ao carrinho`);
+  };
+
   return (
     <div className="item-list-container">
-      <p>{greeting}</p>
+      <p></p>
       <h2>Itens em Destaque:</h2>
       <ul>
         {catalogItems.map((item) => (
@@ -17,6 +22,7 @@ function ItemListContainer({ greeting }) {
             <img src={item.image} alt={item.name} />
             <h3>{item.name}</h3>
             <p>Preço: R$ {item.price.toFixed(2)}</p>
+            <ItemCount stock={5} initial={1} onAdd={handleAddToCart} />
           </li>
         ))}
       </ul>
